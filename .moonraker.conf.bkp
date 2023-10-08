@@ -30,6 +30,15 @@ type = web
 repo = fluidd-core/fluidd
 path = ~/fluidd
 
+[update_manager KlipperScreen]
+type = git_repo
+path = ~/KlipperScreen
+origin = https://github.com/jordanruthe/KlipperScreen.git
+env = ~/.KlipperScreen-env/bin/python
+requirements = scripts/KlipperScreen-requirements.txt
+install_script = scripts/KlipperScreen-install.sh
+managed_services = KlipperScreen
+
 [file_manager]
 enable_object_processing = True
 
@@ -37,11 +46,20 @@ enable_object_processing = True
 temperature_store_size = 600
 gcode_store_size = 1000
 
-[update_manager Klipper-Adaptive-Meshing-Purging]
+[update_manager beacon]
 type = git_repo
 channel = dev
-path = ~/Klipper-Adaptive-Meshing-Purging
-origin = https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
+path = ~/beacon_klipper
+origin = https://github.com/beacon3d/beacon_klipper.git
+env = ~/klippy-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+is_system_service = False
 managed_services = klipper
-primary_branch = main
+info_tags = 
+	desc=Beacon Surface Scanner
+
+[spoolman]
+server = http://192.168.1.7:7912
+sync_rate = 5
 
